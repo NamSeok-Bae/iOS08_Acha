@@ -151,9 +151,11 @@ class RecordMainChartCell: UICollectionViewCell {
         
         var current = 0
         
-        distanceLabelList.reversed().forEach {
-            current += spacing
-            $0.text = current.convertToDecimal + " m"
+        if max != 0 {
+            distanceLabelList.reversed().forEach {
+                current += spacing
+                $0.text = current.convertToDecimal + " m"
+            }
         }
         
         recordViewChartDataArray.enumerated().forEach { index, element in
