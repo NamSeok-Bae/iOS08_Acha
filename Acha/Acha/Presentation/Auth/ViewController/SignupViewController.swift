@@ -22,6 +22,21 @@ final class SignupViewController: UIViewController {
     private lazy var nickNameTextField = AuthInputTextField(type: .nickName)
     private lazy var signUpButton = AuthButton(color: .pointDark, text: "회원가입")
     private lazy var logInButton = AuthButton(color: .pointDark, text: "로그인")
+    private lazy var emailPlacehold: UILabel = UILabel().then {
+        $0.text = "ex) test@naver.com 형식을 맞춰주세요."
+        $0.textColor = .systemGray
+        $0.font = .systemFont(ofSize: 16, weight: .regular)
+    }
+    private lazy var passwordPlacehold: UILabel = UILabel().then {
+        $0.text = "ex) 6글자 이상의 패스워드를 작성해주세요."
+        $0.textColor = .systemGray
+        $0.font = .systemFont(ofSize: 16, weight: .regular)
+    }
+    private lazy var nicknamePlacehold: UILabel = UILabel().then {
+        $0.text = "ex) 3글자 이상의 닉네임을 작성해주세요."
+        $0.textColor = .systemGray
+        $0.font = .systemFont(ofSize: 16, weight: .regular)
+    }
     
     private let viewModel: SignUpViewModel
     private var disposeBag = DisposeBag()
@@ -119,6 +134,9 @@ extension SignupViewController {
     private func configureUI() {
         view.addSubview(scrollView)
         scrollView.addSubview(contentView)
+        scrollView.addSubview(emailPlacehold)
+        scrollView.addSubview(passwordPlacehold)
+        scrollView.addSubview(nicknamePlacehold)
         contentView.addArrangedSubview(titleView)
         contentView.addArrangedSubview(emailTextField)
         contentView.addArrangedSubview(passwordTextField)
@@ -162,6 +180,23 @@ extension SignupViewController {
             $0.height.equalTo(60)
         }
         
+        emailPlacehold.snp.makeConstraints {
+            $0.top.equalTo(emailTextField.snp.bottom).offset(5)
+            $0.leading.equalTo(emailTextField)
+            $0.height.equalTo(20)
+        }
+        
+        passwordPlacehold.snp.makeConstraints {
+            $0.top.equalTo(passwordTextField.snp.bottom).offset(5)
+            $0.leading.equalTo(passwordTextField)
+            $0.height.equalTo(20)
+        }
+        
+        nicknamePlacehold.snp.makeConstraints {
+            $0.top.equalTo(nickNameTextField.snp.bottom).offset(5)
+            $0.leading.equalTo(nickNameTextField)
+            $0.height.equalTo(20)
+        }
     }
 
 }

@@ -24,7 +24,7 @@ final class DefaultLoginUseCase: LoginUseCase {
     
     @discardableResult
     public func emailValidate(text: String) -> Bool {
-        let pattern = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
+        let pattern = "^([0-9a-zA-Z].*?@([0-9a-zA-Z].*\\.\\w{2,4}))$"
         emailValidation = text.stringCheck(pattern: pattern)
         if emailValidation { emailRelay.accept(text) }
         return emailValidation
